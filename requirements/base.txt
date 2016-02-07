@@ -1,7 +1,6 @@
 Django >=1.9, <1.10
 django-environ >= 0.4, < 0.5
 django-q >=0.7, <0.8
-django-picklefield >= 0.3
 ipython >= 4, < 5
 psutil
 pytz
