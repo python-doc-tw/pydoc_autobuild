@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}PyDoc Built History{% endblock %}
+
+{% block content %}
+    <h2>Queued Tasks</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Task ID</th>
+            <th>Task Params</th>
+            <th>Created at</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for task in queued_tasks %}
+        <tr>
+            <td>{{ task.task_id }}</td>
+            <td>{{ task.task.kwargs }}</td>
+            <td>{{ task.lock }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Doc Page Built History</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Task ID</th>
+            <th>Built Page</th>
+            <th>Status</th>
+            <th>Started</th>
+            <th>Ended</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for task in tasks %}
+            <tr>
+                <td>
+                {% if task.success %}
+                    <a href="{% url 'view_task' id=task.id %}">{{ task.id }}</a>
+                {% else %}
+                    {{ task.id }}
+                {% endif %}
+                </td>
+                <td>{{ task.kwargs.page }}</td>
+                <td>{% if task.success %}OK{% else %}FAILED{% endif %}</td>
+                <td>{{ task.started|date:"Y-m-d H:i:s" }}</td>
+                <td>{{ task.stopped|date:"Y-m-d H:i:s" }}</td>
+        {% endfor %}
+        </tbody>
+    </table>
+    <p>Timezone: {{ tz }}</p>
+    <p>Only the latest 10 tasks are kept.</p>
+{% endblock %}
