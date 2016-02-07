@@ -12,7 +12,7 @@ This repo must have the official Python doc repo existed in the same directory.
 For example, if we use the [Taiwan maintained doc repo][cpython-tw], the cloning command will be:
 
     git clone https://github.com/python-doc-tw/cpython-tw.git
-    git clone https://github.com/python-doc-tw/auto_pydoc.git
+    git clone https://github.com/python-doc-tw/pydoc_autobuild.git
 
 The folder structure will be like:
 
