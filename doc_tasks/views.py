@@ -1,5 +1,6 @@
 from collections import namedtuple
 
+from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_GET
 from django.http import Http404, HttpResponse
@@ -33,8 +34,11 @@ def run_task_update_one_source(request):
     source_path = request.GET.get('source_path', None)
     if source_path is None:
         raise Http404('No given source_path')
-    async('doc_tasks.tasks.update_one_page', page=source_path)
-    return HttpResponse('Submitted')
+    task_id = async('doc_tasks.tasks.update_one_page', page=source_path)
+    return HttpResponse(
+        'Submitted as task %s. See <a href="%s">task queue</a>.'
+        % (task_id, reverse('home'))
+    )
 
 
 @require_GET
