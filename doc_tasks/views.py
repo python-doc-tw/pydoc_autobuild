@@ -45,15 +45,21 @@ def run_task_update_one_source(request):
 def view_task(request, id):
     task = get_object_or_404(Task, id=id)
     result = task.result
-    tx_pull = decode_cmd_out(result['tx_pull'])
-    sphinx_intl_build = decode_cmd_out(result['sphinx_intl_build'])
-    sphinx_build_html = decode_cmd_out(result['sphinx_build_html'])
-    return render(request, 'task.html', {
-        'task': task,
-        'tx_pull': tx_pull,
-        'sphinx_intl_build': sphinx_intl_build,
-        'sphinx_build_html': sphinx_build_html,
-    })
+    if task.func == 'doc_tasks.tasks.update_one_page':
+        tx_pull = decode_cmd_out(result['tx_pull'])
+        sphinx_intl_build = decode_cmd_out(result['sphinx_intl_build'])
+        sphinx_build_html = decode_cmd_out(result['sphinx_build_html'])
+        return render(request, 'one_page_task.html', {
+            'task': task,
+            'tx_pull': tx_pull,
+            'sphinx_intl_build': sphinx_intl_build,
+            'sphinx_build_html': sphinx_build_html,
+        })
+    return Http404(
+        'Given task of type %s does not have the result template '
+        'to be rendered yet.'
+        % task.func
+    )
 
 
 @require_GET
