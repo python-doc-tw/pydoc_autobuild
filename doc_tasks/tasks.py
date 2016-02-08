@@ -88,7 +88,7 @@ def sphinx_build_html():
 
 
 def update_one_page(page):
-    processes = {}
+    processes = OrderedDict()
     processes['tx_pull'] = tx_pull(page)
     processes['sphinx_intl_build'] = sphinx_intl_build()
     processes['sphinx_build_html'] = sphinx_build_html()
