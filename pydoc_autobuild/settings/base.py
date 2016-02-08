@@ -140,6 +140,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = join(BASE_DIR, 'assets')
+
 
 # Cache
 
