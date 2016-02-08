@@ -46,13 +46,14 @@ def run_command_under_doc_root(cmd, catched=True):
 
 
 def git_add_commit_push():
-    git_processes = {}
-    cmds = {
-        'git_add': [GIT, 'add', 'locale/*'],
-        'git_commit': [GIT, 'commit', '-m', 'Update translation (auto daily)'],
-        'git_push': [GIT, 'push'],
-    }
-    for cmd_name, cmd in cmds.items():
+    git_processes = OrderedDict()
+    commit_msg = 'Update translation (auto daily)'
+    commands = OrderedDict([
+        ('git_add', [GIT, 'add', 'locale/*']),
+        ('git_commit', [GIT, 'commit', '-m', commit_msg]),
+        ('git_push', [GIT, 'push']),
+    ])
+    for cmd_name, cmd in commands.items():
         git_processes[cmd_name] = run_command_under_doc_root(cmd)
     return git_processes
 
