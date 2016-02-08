@@ -9,8 +9,9 @@ from django_q.tasks import async, Task
 from django_q.models import OrmQ
 
 
-ParsedCompletedCommand = namedtuple('ParsedCompletedCommand',
-                                    ['returncode', 'stdout', 'stderr'])
+ParsedCompletedCommand = namedtuple(
+    'ParsedCompletedCommand',
+    ['returncode', 'args', 'stdout', 'stderr'])
 
 
 def decode_cmd_out(completed_cmd):
@@ -24,6 +25,7 @@ def decode_cmd_out(completed_cmd):
         stderr = '<EMPTY>'
     return ParsedCompletedCommand(
         completed_cmd.returncode,
+        completed_cmd.args,
         stdout,
         stderr
     )

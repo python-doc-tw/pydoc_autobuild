@@ -5,13 +5,25 @@
 {% block content %}
     <h1>Task {{ task.id }}</h1>
     <p>({{ task.name }})</p>
-    <h2>tx pull (return code: {{ tx_pull.returncode }})</h2>
+    <h2>tx pull</h2>
+	<ul>
+		<li><code>{{ tx_pull.args|join:" " }}</code></li>
+		<li>Return code: {{ tx_pull.returncode }}</li>
+	</ul>
     <pre>{{ tx_pull.stdout }}</pre>
     <pre>{{ tx_pull.stderr }}</pre>
-    <h2>sphinx-intl build (return code: {{ sphinx_intl_build.returncode }})</h2>
+    <h2>sphinx-intl build</h2>
+	<ul>
+		<li><code>{{ sphinx_intl_build.args|join:" " }}</code></li>
+		<li>Return code: {{ sphinx_intl_build.returncode }}</li>
+	</ul>
     <pre>{{ sphinx_intl_build.stdout }}</pre>
     <pre>{{ sphinx_intl_build.stderr }}</pre>
-    <h2>sphinx-build -b html (return code: {{ sphinx_build_html.returncode }})</h2>
+    <h2>sphinx-build -b html</h2>
+	<ul>
+		<li><code>{{ sphinx_build_html.args|join:" " }}</code></li>
+		<li>Return code: {{ sphinx_build_html.returncode }}</li>
+	</ul>
     <pre>{{ sphinx_build_html.stdout }}</pre>
     <pre>{{ sphinx_build_html.stderr }}</pre>
 {% endblock content %}
