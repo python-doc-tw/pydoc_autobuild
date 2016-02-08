@@ -7,6 +7,7 @@
         <thead>
         <tr>
             <th>Task ID</th>
+            <th>Task Type</th>
             <th>Task Params</th>
             <th>Created at</th>
         </tr>
@@ -15,6 +16,7 @@
         {% for task in queued_tasks %}
         <tr>
             <td>{{ task.task_id }}</td>
+            <td>{{ task.func }}</td>
             <td>{{ task.task.kwargs }}</td>
             <td>{{ task.lock }}</td>
         </tr>
