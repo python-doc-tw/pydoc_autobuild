@@ -52,6 +52,34 @@
         {% endfor %}
         </tbody>
     </table>
+
+    <h2>Daily Built History</h2>
+	<table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Task ID</th>
+            <th>Status</th>
+            <th>Started</th>
+            <th>Ended</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for task in daily_update_tasks %}
+            <tr>
+                <td>
+                {% if task.success %}
+                    <a href="{% url 'view_task' id=task.id %}">{{ task.id }}</a>
+                {% else %}
+                    {{ task.id }}
+                {% endif %}
+                </td>
+                <td>{% if task.success %}OK{% else %}FAILED{% endif %}</td>
+                <td>{{ task.started|date:"Y-m-d H:i:s" }}</td>
+                <td>{{ task.stopped|date:"Y-m-d H:i:s" }}</td>
+        {% endfor %}
+        </tbody>
+    </table>
+
     <p>Timezone: {{ tz }}</p>
     <p>Only the latest 10 tasks are kept.</p>
 {% endblock %}

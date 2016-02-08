@@ -1,4 +1,4 @@
-from collections import namedtuple
+from collections import namedtuple, OrderedDict
 
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404
@@ -57,6 +57,15 @@ def view_task(request, id):
             'sphinx_intl_build': sphinx_intl_build,
             'sphinx_build_html': sphinx_build_html,
         })
+    if task.func == 'doc_tasks.tasks.full_update_and_commit':
+        decoded_result = OrderedDict([
+            (cmd_name, decode_cmd_out(cmd))
+            for cmd_name, cmd in task.result.items()
+        ])
+        return rendered(request, 'daily_update_task.html', {
+            'task': task,
+            'decoded_result': decoded_result
+        })
     return Http404(
         'Given task of type %s does not have the result template '
         'to be rendered yet.'
@@ -72,8 +81,12 @@ def home(request):
     one_page_tasks = Task.objects.all().filter(
         func__exact='doc_tasks.tasks.update_one_page'
     ).order_by('-started')
+    daily_update_tasks = Task.objects.all().filter(
+        func__exact='doc_tasks.tasks.full_update_and_commit'
+    ).order_by('-started')
     return render(request, 'index.html', {
         'one_page_tasks': one_page_tasks,
+        'daily_update_tasks': daily_update_tasks,
         'queued_tasks': queued_tasks,
         'tz': tz,
     })
