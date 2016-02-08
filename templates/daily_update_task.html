@@ -5,8 +5,11 @@
 {% block content %}
 		<h1>Task {{ task.id }} <small>{{ task.name }}</small></h1>
 		{% for cmd_name, cmd_result in decoded_result.items %}
-		<h2>{{ cmd_name }} (return code: {{ cmd_result.returncode }}</h2>
-		<p><code>{{ cmd_result.args|join:" " }}</code></p>
+		<h2>{{ cmd_name }}</h2>
+		<ul>
+			<li><code>{{ cmd_result.args|join:" " }}</code></li>
+			<li>Return code: {{ cmd_result.returncode }}</li>
+		</ul>
 		<pre>{{ cmd_result.stdout }}</pre>
 		<pre>{{ cmd_result.stderr }}</pre>
 		{% endfor %}
