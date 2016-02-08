@@ -44,6 +44,18 @@ def run_command_under_doc_root(cmd, catched=True):
         return process
 
 
+def git_add_commit_push():
+    git_processes = {}
+    cmds = {
+        'git_add': ['git', 'add', 'locale/*'],
+        'git_commit': ['git', 'commit', '-m', 'Update translation (auto daily)'],
+        'git_push': ['git', 'push'],
+    }
+    for cmd_name, cmd in cmds.items():
+        git_processes[cmd_name] = run_command_under_doc_root(cmd)
+    return git_processes
+
+
 def tx_pull(page=None):
     cmd = [TX, 'pull', '-l', LANG]
     if page is not None:
