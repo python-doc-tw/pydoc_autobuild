@@ -62,7 +62,7 @@ def view_task(request, id):
             (cmd_name, decode_cmd_out(cmd))
             for cmd_name, cmd in task.result.items()
         ])
-        return rendered(request, 'daily_update_task.html', {
+        return render(request, 'daily_update_task.html', {
             'task': task,
             'decoded_result': decoded_result
         })
