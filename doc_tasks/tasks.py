@@ -96,8 +96,7 @@ def update_one_page(page):
 
 
 def full_update_and_commit():
-    processes = {
-        'tx_pull': tx_pull(page=None),
-        **git_add_commit_push(),
-    }
+    processes = OrderedDict()
+    processes.update(update_one_page(page=None))
+    processes.update(git_add_commit_push())
     return processes
