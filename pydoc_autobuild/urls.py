@@ -23,6 +23,7 @@ from doc_tasks import views
 
 
 urlpatterns = [
+    url(r'^$', RedirectView.as_view(pattern_name='home')),
     url(r'^_build/$', views.home, name='home'),
     url(r'^_build/update/$', views.run_task_update_one_source),
     url(r'^_build/task/(?P<id>\w+)$', views.view_task, name='view_task'),
@@ -47,8 +48,6 @@ if settings.DEBUG:
             RedirectView.as_view(pattern_name="pydoc"),
             name="pydoc_redirect_35"
         ),
-        # redirect / to /_build
-        url(r'^$', RedirectView.as_view(pattern_name='home')),
     ]
 
 
