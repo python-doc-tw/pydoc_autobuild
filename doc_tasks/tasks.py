@@ -92,3 +92,11 @@ def update_one_page(page):
     processes['sphinx_intl_build'] = sphinx_intl_build()
     processes['sphinx_build_html'] = sphinx_build_html()
     return processes
+
+
+def full_update_and_commit():
+    processes = {
+        'tx_pull': tx_pull(page=None),
+        **git_add_commit_push(),
+    }
+    return processes
