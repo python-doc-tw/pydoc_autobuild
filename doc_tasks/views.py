@@ -56,12 +56,12 @@ def view_task(request, id):
 def home(request):
     tz = 'Asia/Taipei'
     activate(tz)
-    queued_tasks = OrmQ.objects.all().order_by('lock')[:10]
-    tasks = Task.objects.all().filter(
+    queued_tasks = OrmQ.objects.all().order_by('lock')
+    one_page_tasks = Task.objects.all().filter(
         func__exact='doc_tasks.tasks.update_one_page'
-    ).order_by('-started')[:10]
+    ).order_by('-started')
     return render(request, 'index.html', {
-        'tasks': tasks,
+        'one_page_tasks': one_page_tasks,
         'queued_tasks': queued_tasks,
         'tz': tz,
     })
