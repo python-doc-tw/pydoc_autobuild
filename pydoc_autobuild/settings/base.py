@@ -179,6 +179,7 @@ TRANSIFEX_PROJ_NAME = env.str('TRANSIFEX_PROJ_NAME', default='python-35-tw')
 TRANSIFEX_TX_BIN = env.str('TRANSIFEX_TX_BIN', default='tx')
 SPHINX_INTL_BIN = env.str('SPHINX_INTL_BIN', default='sphinx-intl')
 SPHINX_BUILD_BIN = env.str('SPHINX_INTL_BIN', default='sphinx-build')
+GIT_BIN = env.str('GIT_BIN', default='/usr/bin/git')
 
 
 # Debug

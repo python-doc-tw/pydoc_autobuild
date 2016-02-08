@@ -16,6 +16,7 @@ from django.conf import settings
 
 TX = settings.TRANSIFEX_TX_BIN
 LANG = settings.PYDOC_LANG
+GIT = settings.GIT_BIN
 SPHINX_INTL = settings.SPHINX_INTL_BIN
 SPHINX_BUILD = settings.SPHINX_BUILD_BIN
 
@@ -47,9 +48,9 @@ def run_command_under_doc_root(cmd, catched=True):
 def git_add_commit_push():
     git_processes = {}
     cmds = {
-        'git_add': ['git', 'add', 'locale/*'],
-        'git_commit': ['git', 'commit', '-m', 'Update translation (auto daily)'],
-        'git_push': ['git', 'push'],
+        'git_add': [GIT, 'add', 'locale/*'],
+        'git_commit': [GIT, 'commit', '-m', 'Update translation (auto daily)'],
+        'git_push': [GIT, 'push'],
     }
     for cmd_name, cmd in cmds.items():
         git_processes[cmd_name] = run_command_under_doc_root(cmd)
