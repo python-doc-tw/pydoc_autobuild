@@ -171,12 +171,15 @@ Q_CLUSTER = {
 
 # Pydoc
 
-PYDOC_ROOT = abspath(expanduser('../cpython-tw/Doc'))
-PYDOC_LANG = 'zh-Hant'
-TRANSIFEX_PROJ_NAME = 'python-35-tw'
-TRANSIFEX_TX_BIN = 'tx'
-SPHINX_INTL_BIN = 'sphinx-intl'
-SPHINX_BUILD_BIN = 'sphinx-build'
+PYDOC_ROOT = abspath(expanduser(
+    env.str('PYDOC_ROOT', default='../cpython-tw/Doc')
+))
+PYDOC_LANG = env.str('PYDOC_LANG', default='zh-Hant')
+TRANSIFEX_PROJ_NAME = env.str('TRANSIFEX_PROJ_NAME', default='python-35-tw')
+TRANSIFEX_TX_BIN = env.str('TRANSIFEX_TX_BIN', default='tx')
+SPHINX_INTL_BIN = env.str('SPHINX_INTL_BIN', default='sphinx-intl')
+SPHINX_BUILD_BIN = env.str('SPHINX_INTL_BIN', default='sphinx-build')
+
 
 # Debug
 
