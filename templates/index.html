@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+
+{% load humanize %}
+
 {% block title %}PyDoc Built History{% endblock %}
 
 {% block content %}
@@ -9,7 +12,7 @@
             <th>Task ID</th>
             <th>Task Type</th>
             <th>Task Params</th>
-            <th>Created at</th>
+            <th>Created</th>
         </tr>
         </thead>
         <tbody>
@@ -18,7 +21,7 @@
             <td>{{ task.task_id }}</td>
             <td>{{ task.func }}</td>
             <td>{{ task.task.kwargs }}</td>
-            <td>{{ task.lock }}</td>
+            <td>{{ task.task.started|naturaltime }}</td>
         </tr>
         {% endfor %}
         </tbody>
