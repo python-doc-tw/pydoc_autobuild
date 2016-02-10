@@ -28,6 +28,9 @@ del TEMPLATES[0]['APP_DIRS']
 # Explicitly tell Django where to find translations.
 LOCALE_PATHS = [join(BASE_DIR, 'locale')]
 
+# Increase Django-Q number of saved results
+Q_CLUSTER['save_limit'] = 50
+
 # Log everything to the logs directory at the top
 LOGFILE_ROOT = join(BASE_DIR, 'logs')
 
