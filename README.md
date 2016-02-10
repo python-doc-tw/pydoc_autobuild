@@ -2,6 +2,8 @@
 
 This repository serves the autobuild of [the Taiwan Translation of Python Official Documentation][python-doc-tw].
 
+You can see the live demo at <http://pydoc.liang2.tw/_build/>.
+
 [python-doc-tw]: https://github.com/python-doc-tw/python-doc-tw
 
 
@@ -35,7 +37,7 @@ PYDOC_ROOT = abspath(expanduser('../cpython-tw/Doc'))
 ### Requirements
 
 - Git 1.8+
-- Python 3.4+
+- Python 3.5
 
 
 ### Virtual Environment `venv`
