@@ -1,6 +1,7 @@
 from collections import namedtuple, OrderedDict
 
 from django.core.urlresolvers import reverse
+from django.conf import settings
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_GET
 from django.http import Http404, HttpResponse
@@ -89,4 +90,5 @@ def home(request):
         'daily_update_tasks': daily_update_tasks,
         'queued_tasks': queued_tasks,
         'tz': tz,
+        'num_result': settings.Q_CLUSTER['save_limit'],
     })
