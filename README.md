@@ -22,11 +22,12 @@ The folder structure will be like:
     ├── cpython-tw/   # CPython's git repo
     └── pydoc_autobuild/   # this git repo
 
-If the doc repo is at different location, change the path of `PYDOC_ROOT` at `<root>/pydoc_autobuild/pydoc_autobuild/settings/base.py`.
+If the doc repo is at different location, Add the path to the doc repo as `PYDOC_ROOT` variable at  `<root>/pydoc_autobuild/pydoc_autobuild/settings/local.env`.
 
 ```python
-# pydoc_autobuild/settings/base.py
-PYDOC_ROOT = abspath(expanduser('../cpython-tw/Doc'))
+# pydoc_autobuild/settings/local.env
+# no whitespace between `=`
+PYDOC_ROOT=/path/to/cpython-tw/Doc
 ```
 
 [cpython-tw]: https://github.com/python-doc-tw/cpython-tw
