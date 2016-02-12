@@ -84,7 +84,7 @@ Then we are ready to setup the autobuild server. Install the dependency at `<roo
 
 Settings are stored in environment variables via [django-environ](http://django-environ.readthedocs.org/en/latest/). The quickiest way to start is to copy `local.sample.env` into `local.env`:
 
-    cp <root>/auto_pydoc/settings/local.sample.env src/pycontw2016/settings/local.env
+    cp <root>/auto_pydoc/settings/local.sample.env <root>/auto_pydoc/settings/local.env
 
 Then edit the `SECRET_KEY` line in `local.env`, replacing `{{ secret_key }}` into any [Django Secret Key](http://www.miniwebtool.com/django-secret-key-generator/) value. An example:
 
