@@ -2,7 +2,7 @@
 
 This repository serves the autobuild of [the Taiwan Translation of Python Official Documentation][python-doc-tw].
 
-You can see the live demo at <http://pydoc.liang2.tw/_build/>.
+You can see the live demo at <http://docs.python.org.tw/_build/>.
 
 [python-doc-tw]: https://github.com/python-doc-tw/python-doc-tw
 
