@@ -7,7 +7,7 @@ import logging.config
 DEBUG = False
 
 # Must mention ALLOWED_HOSTS in production!
-ALLOWED_HOSTS = ['pydoc.liang2.tw']
+ALLOWED_HOSTS = ['docs.python.org.tw']
 
 
 # Cache the templates in memory for speed-up
