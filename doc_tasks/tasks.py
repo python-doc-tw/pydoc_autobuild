@@ -76,12 +76,16 @@ def sphinx_intl_build():
     )
 
 
-def sphinx_build_html():
+def sphinx_build_html(rebuild_all=False):
     cmd = [
         SPHINX_BUILD, '-b', 'html',
         '-d', 'build/doctrees',
         '-D', 'language=%s' % LANG,
         '-A', 'autobuildi18n=1',
+    ]
+    if rebuild_all:
+        cmd += ['-a']
+    cmd += [
         '.', 'build/html',
     ]
     return run_command_under_doc_root(cmd)
@@ -97,6 +101,8 @@ def update_one_page(page):
 
 def full_update_and_commit():
     processes = OrderedDict()
-    processes.update(update_one_page(page=None))
+    processes['tx_pull'] = tx_pull(page=None)
+    processes['sphinx_intl_build'] = sphinx_intl_build(rebuild_all=True)
+    processes['sphinx_build_html'] = sphinx_build_html()
     processes.update(git_add_commit_push())
     return processes
