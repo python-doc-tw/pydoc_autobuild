@@ -1,12 +1,3 @@
-"""
-
-To update one page::
-
-    tx pull -l zh-Hant -r "python-35-tw.library--index"
-    sphinx-intl build
-
-    make -e SPHINXOPTS="-D language='zh-Hant'" html
-"""
 from collections import OrderedDict
 from contextlib import contextmanager
 import os
@@ -102,7 +93,6 @@ def update_one_page(page):
 def full_update_and_commit():
     processes = OrderedDict()
     processes['tx_pull'] = tx_pull(page=None)
-    processes['sphinx_intl_build'] = sphinx_intl_build()
     processes['sphinx_build_html'] = sphinx_build_html(rebuild_all=True)
     processes.update(git_add_commit_push())
     return processes
