@@ -3,7 +3,8 @@ from collections import namedtuple, OrderedDict
 from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.shortcuts import render, get_object_or_404
-from django.views.decorators.http import require_GET
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_GET, require_POST
 from django.http import Http404, HttpResponse
 from django.utils.timezone import activate
 from django_q.tasks import async, Task
@@ -32,12 +33,18 @@ def decode_cmd_out(completed_cmd):
     )
 
 
-@require_GET
+@csrf_exempt
+@require_POST
 def run_task_update_one_source(request):
-    source_path = request.GET.get('source_path', None)
+    source_path = request.POST.get('source_path', None)
     if source_path is None:
         raise Http404('No given source_path')
-    task_id = async('doc_tasks.tasks.update_one_page', page=source_path)
+    # converting source_path to Transifex sources
+    if source_path == 'glossary':
+        tx_page = 'glossary-1'
+    else:
+        tx_page = source_path.replace('/', '--').replace('.', '_')
+    task_id = async('doc_tasks.tasks.update_one_page', page=tx_page)
     return HttpResponse(
         'Submitted as task %s. See <a href="%s">task queue</a>.'
         % (task_id, reverse('home'))
