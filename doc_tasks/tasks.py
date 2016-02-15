@@ -102,7 +102,7 @@ def update_one_page(page):
 def full_update_and_commit():
     processes = OrderedDict()
     processes['tx_pull'] = tx_pull(page=None)
-    processes['sphinx_intl_build'] = sphinx_intl_build(rebuild_all=True)
-    processes['sphinx_build_html'] = sphinx_build_html()
+    processes['sphinx_intl_build'] = sphinx_intl_build()
+    processes['sphinx_build_html'] = sphinx_build_html(rebuild_all=True)
     processes.update(git_add_commit_push())
     return processes
