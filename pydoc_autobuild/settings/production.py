@@ -29,7 +29,11 @@ del TEMPLATES[0]['APP_DIRS']
 LOCALE_PATHS = [join(BASE_DIR, 'locale')]
 
 # Increase Django-Q number of saved results
-Q_CLUSTER['save_limit'] = 50
+Q_CLUSTER['save_limit'] = 25
+# Decrease number of tasks in memory
+Q_CLUSTER['queue_limit'] = 5
+# Increase default timeout time
+Q_CLUSTER['timeout'] = 3600
 
 # Log everything to the logs directory at the top
 LOGFILE_ROOT = join(BASE_DIR, 'logs')
