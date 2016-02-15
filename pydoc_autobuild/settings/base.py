@@ -175,7 +175,7 @@ Q_CLUSTER = {
 PYDOC_ROOT = abspath(expanduser(
     env.str('PYDOC_ROOT', default='../cpython-tw/Doc')
 ))
-PYDOC_LANG = env.str('PYDOC_LANG', default='zh-Hant')
+PYDOC_LANG = env.str('PYDOC_LANG', default='zh_Hant')
 TRANSIFEX_PROJ_NAME = env.str('TRANSIFEX_PROJ_NAME', default='python-35-tw')
 TRANSIFEX_TX_BIN = env.str('TRANSIFEX_TX_BIN', default='tx')
 SPHINX_INTL_BIN = env.str('SPHINX_INTL_BIN', default='sphinx-intl')
