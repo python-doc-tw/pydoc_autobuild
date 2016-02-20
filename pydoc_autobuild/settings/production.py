@@ -35,6 +35,18 @@ Q_CLUSTER['queue_limit'] = 5
 # Increase default timeout time
 Q_CLUSTER['timeout'] = 3600
 
+
+# Securiy related settings
+SECURE_HSTS_SECONDS = 2592000
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF=True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+X_FRAME_OPTIONS = 'DENY'
+
+
 # Log everything to the logs directory at the top
 LOGFILE_ROOT = join(BASE_DIR, 'logs')
 
