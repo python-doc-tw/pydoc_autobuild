@@ -93,6 +93,10 @@ def update_one_page(page):
 def full_update_and_commit():
     processes = OrderedDict()
     processes['tx_pull'] = tx_pull(page=None)
-    processes['sphinx_build_html'] = sphinx_build_html(rebuild_all=True)
+    # FIXME: set rebuild_all=False to shorten build time
+    # rebuild_all will take too long time
+    # causing the task times out and respawn for many times
+    # additionally make update_one_page uncached (unpickled)
+    processes['sphinx_build_html'] = sphinx_build_html(rebuild_all=False)
     processes.update(git_add_commit_push())
     return processes
