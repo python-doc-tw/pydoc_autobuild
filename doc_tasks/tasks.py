@@ -93,8 +93,6 @@ def update_one_page(page):
 def full_update_and_commit():
     processes = OrderedDict()
     processes['tx_pull'] = tx_pull(page=None)
-    # No need to sphinx_intl_build if using rebuild_all
-    processes['sphinx_intl_build'] = sphinx_intl_build()
     # FIXME: set rebuild_all=False to shorten build time
     # rebuild_all will take too long time
     # causing the task times out and respawn for many times
